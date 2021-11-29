@@ -1,15 +1,25 @@
-// Install dependencies  DONE
-// Import Dependencies DONE
+// >>>>>>>>> HANDPOSE SETUP
 //Setup webcam and canvas DONE
 // Define references to those DONE
 // Load hanpose DONE
 // Detect function DONE
+// Drawing utilities from tensorflow DONE
+// Draw functions DONE
 
-// Drawing utilities from tensorflow
-// Draw functions
+// >>>>>>>>> GESTURE RECOGNITION
+// add Use State DONE
+// Import emojis and finger pose import DONE
 
-import React, {useRef} from "react";
+// upd detect function for gesture handling
+//setup hook and emoji object
+// add emoji display to the screen
+
+
+import React, {useRef, useState} from "react";
 import * as tf from '@tensorflow/tfjs'
+import * as fp from 'fingerpose'
+import victory from './victory.png'
+import thumbs_up from './thumbs_up.png'
 import * as handpose from '@tensorflow-models/handpose'
 import Webcam from 'react-webcam'
 import './App.css';
@@ -52,6 +62,15 @@ function App() {
       // Make detections
       const hand = await net.estimateHands(video)
       console.log(hand)
+
+        if (hand.length > 0) {
+            const GE = new fp.GestureEstimator([
+                fp.Gestures.VictoryGesture,
+                fp.Gestures.ThumbsUpGesture,
+            ]);
+          const gesture = await GE.estimate(hand[0].landmarks,8)
+          console.log(gesture)
+      }
       // Draw mesh
       const ctx = canvasRef.current.getContext('2d')
       drawHand(hand, ctx)
