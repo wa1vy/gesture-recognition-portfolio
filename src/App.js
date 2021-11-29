@@ -3,14 +3,17 @@
 //Setup webcam and canvas DONE
 // Define references to those DONE
 // Load hanpose DONE
-// Detect function
+// Detect function DONE
+
 // Drawing utilities from tensorflow
 // Draw functions
+
 import React, {useRef} from "react";
 import * as tf from '@tensorflow/tfjs'
 import * as handpose from '@tensorflow-models/handpose'
 import Webcam from 'react-webcam'
 import './App.css';
+import {drawHand} from "./utilities";
 
 function App() {
 
@@ -50,6 +53,8 @@ function App() {
       const hand = await net.estimateHands(video)
       console.log(hand)
       // Draw mesh
+      const ctx = canvasRef.current.getContext('2d')
+      drawHand(hand, ctx)
     }
 
   }
