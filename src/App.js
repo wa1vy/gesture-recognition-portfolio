@@ -21,16 +21,19 @@ import * as handpose from "@tensorflow-models/handpose";
 import Webcam from "react-webcam";
 import "./App.css";
 import { drawHand } from "./utilities";
-import testHeader from "./testHeader";
 import * as fp from "fingerpose";
 import victory from "./victory.png";
 import thumbs_up from "./thumbs_up.png";
+import {log} from "@tensorflow/tfjs";
+import TestHeader from "./components/testHeader";
+import Test2Header from "./components/test2Header";
+import BasePage from "./components/basePage";
 
 function App() {
     const webcamRef = useRef(null);
     const canvasRef = useRef(null);
 
-    const [emoji, setEmoji] = useState(null);
+    const [emoji, setEmoji] = useState('base');
     const images = { thumbs_up: thumbs_up, victory: victory };
 
 
@@ -40,7 +43,7 @@ function App() {
         //  Loop and detect hands
         setInterval(() => {
             detect(net);
-        }, 10);
+        }, 700);
     };
 
     const detect = async (net) => {
@@ -82,8 +85,8 @@ function App() {
                     const maxConfidence = confidence.indexOf(
                         Math.max.apply(null, confidence)
                     );
-                    // console.log(gesture.gestures[maxConfidence].name);
                     setEmoji(gesture.gestures[maxConfidence].name);
+                    console.log(gesture.gestures[maxConfidence].name)
                 }
             }
 
@@ -95,59 +98,116 @@ function App() {
 
     useEffect(()=>{runHandpose()},[]);
 
-    return (
+    if(emoji === 'victory'){
+        return(
         <div className="App">
-            <header className="App-header">
-                <Webcam
-                    ref={webcamRef}
-                    style={{
-                        position: "absolute",
-                        marginLeft: "auto",
-                        marginRight: "auto",
-                        left: 0,
-                        right: 0,
-                        textAlign: "center",
-                        zIndex: 9,
-                        width: 640,
-                        height: 480,
-                    }}
-                />
+                    <header className="App-header">
+                        <Webcam
+                            ref={webcamRef}
+                            style={{
+                                position: "absolute",
+                                marginLeft: "auto",
+                                marginRight: "auto",
+                                left: 0,
+                                right: 0,
+                                textAlign: "center",
+                                zIndex: 7,
+                                width: 640,
+                                height: 480,
+                            }}
+                        />
+                      <canvas
+                            ref={canvasRef}
+                            style={{
+                                position: "absolute",
+                                marginLeft: "auto",
+                                marginRight: "auto",
+                                left: 0,
+                                right: 0,
+                                textAlign: "center",
+                                zIndex: -1,
+                                width: 640,
+                                height: 480,
+                            }}
+                        />
+                        <TestHeader/>
+                    </header>
+                </div>
+            );
+    }else if(emoji === 'thumbs_up'){
+        return(
+            <div className="App">
+                <header className="App-header">
+                    <Webcam
+                        ref={webcamRef}
+                        style={{
+                            position: "absolute",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            left: 0,
+                            right: 0,
+                            textAlign: "center",
+                            zIndex: 7,
+                            width: 640,
+                            height: 480,
+                        }}
+                    />
+                    <canvas
+                        ref={canvasRef}
+                        style={{
+                            position: "absolute",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            left: 0,
+                            right: 0,
+                            textAlign: "center",
+                            zIndex: -1,
+                            width: 640,
+                            height: 480,
+                        }}
+                    />
+                    <Test2Header/>
+                </header>
+            </div>
+        );
+    }else if (emoji === 'base'){
+       return (
+            <div className="App">
+                <header className="App-header">
+                    <Webcam
+                        ref={webcamRef}
+                        style={{
+                            position: "absolute",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            left: 0,
+                            right: 0,
+                            textAlign: "center",
+                            zIndex: 7,
+                            width: 640,
+                            height: 480,
+                        }}
+                    />
+                    <canvas
+                        ref={canvasRef}
+                        style={{
+                            position: "absolute",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            left: 0,
+                            right: 0,
+                            textAlign: "center",
+                            zIndex: -1,
+                            width: 640,
+                            height: 480,
+                        }}
+                    />
+                    <BasePage/>
+                </header>
 
-                <canvas
-                    ref={canvasRef}
-                    style={{
-                        position: "absolute",
-                        marginLeft: "auto",
-                        marginRight: "auto",
-                        left: 0,
-                        right: 0,
-                        textAlign: "center",
-                        zIndex: 9,
-                        width: 640,
-                        height: 480,
-                    }}
-                />
-                if (emoji !== null) {
-                <img
-                    src={images[emoji]}
-                    style={{
-                        position: "absolute",
-                        marginLeft: "auto",
-                        marginRight: "auto",
-                        left: 400,
-                        bottom: 500,
-                        right: 0,
-                        textAlign: "center",
-                        height: 100,
-                    }}
-                />
-            }else{
-             ''
-            }
-                {/* NEW STUFF */}
-            </header>
-        </div>
-    );
+            </div>
+        );
+    }
 }
 
 export default App;
