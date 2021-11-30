@@ -1,8 +1,8 @@
 import React from "react";
-export default function testHeader(){
+export default function BasePage(){
     return(
         <div className='testDiv'>
-            <h1>Hello World!</h1>
+            <h1>Basic Page</h1>
         </div>
     )
 }
