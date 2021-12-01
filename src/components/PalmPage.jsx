@@ -1,8 +1,8 @@
 import React from "react";
-export default function Test2Header(){
+export default function PalmPage(){
     return(
         <div className='testDiv'>
-            <h1>my projects!</h1>
+            <h1>Palm Page</h1>
         </div>
     )
 }

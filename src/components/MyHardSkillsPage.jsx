@@ -1,5 +1,5 @@
 import React from "react";
-export default function TestHeader() {
+export function MyHardSkillsPage() {
     return(
         <>
             <div className='testDiv'>

@@ -1,8 +1,8 @@
 import React from "react";
-export default function Test3Header(){
+export default function MyProjectsPage(){
     return(
         <div className='testDiv'>
-            <h1>Palm Page</h1>
+            <h1>my projects!</h1>
         </div>
     )
 }
