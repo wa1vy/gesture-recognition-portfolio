@@ -15,6 +15,9 @@
 // add emoji display to the screen DONE
 
 
+// Create new gesture definition DONE
+// Import gesture to handpose
+
 import React, { useRef, useState, useEffect } from "react";
 import * as tf from "@tensorflow/tfjs";
 import * as handpose from "@tensorflow-models/handpose";
@@ -24,18 +27,19 @@ import { drawHand } from "./utilities";
 import * as fp from "fingerpose";
 import victory from "./victory.png";
 import thumbs_up from "./thumbs_up.png";
-import {log} from "@tensorflow/tfjs";
 import TestHeader from "./components/testHeader";
 import Test2Header from "./components/test2Header";
 import BasePage from "./components/basePage";
-
+import {RockGesture} from "./customGestures/rockGesture";
+import {PalmGesture} from "./customGestures/palm";
+import Test3Header from "./components/test3Header";
 function App() {
     const webcamRef = useRef(null);
     const canvasRef = useRef(null);
 
     const [emoji, setEmoji] = useState('base');
     const images = { thumbs_up: thumbs_up, victory: victory };
-
+    let a = 0
 
     const runHandpose = async () => {
         const net = await handpose.load();
@@ -43,7 +47,7 @@ function App() {
         //  Loop and detect hands
         setInterval(() => {
             detect(net);
-        }, 700);
+        }, 10);
     };
 
     const detect = async (net) => {
@@ -74,10 +78,12 @@ function App() {
                 const GE = new fp.GestureEstimator([
                     fp.Gestures.VictoryGesture,
                     fp.Gestures.ThumbsUpGesture,
+                    RockGesture,
+                    PalmGesture
                 ]);
                 const gesture = await GE.estimate(hand[0].landmarks, 4);
                 if (gesture.gestures !== undefined && gesture.gestures.length > 0) {
-                    // console.log(gesture.gestures);
+                    console.log(gesture.gestures);
 
                     const confidence = gesture.gestures.map(
                         (prediction) => prediction.confidence
@@ -102,7 +108,7 @@ function App() {
         return(
         <div className="App">
                     <header className="App-header">
-                        <Webcam
+                        <Webcam className = 'webcam'
                             ref={webcamRef}
                             style={{
                                 position: "absolute",
@@ -111,7 +117,7 @@ function App() {
                                 left: 0,
                                 right: 0,
                                 textAlign: "center",
-                                zIndex: 7,
+                               // zIndex: 7,
                                 width: 640,
                                 height: 480,
                             }}
@@ -138,7 +144,7 @@ function App() {
         return(
             <div className="App">
                 <header className="App-header">
-                    <Webcam
+                    <Webcam className = 'webcam'
                         ref={webcamRef}
                         style={{
                             position: "absolute",
@@ -147,7 +153,7 @@ function App() {
                             left: 0,
                             right: 0,
                             textAlign: "center",
-                            zIndex: 7,
+                            //zIndex: 7,
                             width: 640,
                             height: 480,
                         }}
@@ -174,7 +180,7 @@ function App() {
        return (
             <div className="App">
                 <header className="App-header">
-                    <Webcam
+                    <Webcam className = 'webcam'
                         ref={webcamRef}
                         style={{
                             position: "absolute",
@@ -183,7 +189,119 @@ function App() {
                             left: 0,
                             right: 0,
                             textAlign: "center",
-                            zIndex: 7,
+                            //zIndex: 7,
+                            width: 640,
+                            height: 480,
+                        }}
+                    />
+                    <canvas
+                        ref={canvasRef}
+                        style={{
+                            position: "absolute",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            left: 0,
+                            right: 0,
+                            textAlign: "center",
+                            zIndex: -1,
+                            width: 640,
+                            height: 480,
+                        }}
+                    />
+                    <BasePage/>
+                </header>
+
+            </div>
+        );
+    }else if (emoji === 'rock'){
+        return (
+            <div className="App">
+                <header className="App-header">
+                    <Webcam className = 'webcam'
+                        ref={webcamRef}
+                        style={{
+                            position: "absolute",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            left: 0,
+                            right: 0,
+                            textAlign: "center",
+                           // zIndex: 7,
+                            width: 640,
+                            height: 480,
+                        }}
+                    />
+                    <canvas
+                        ref={canvasRef}
+                        style={{
+                            position: "absolute",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            left: 0,
+                            right: 0,
+                            textAlign: "center",
+                            zIndex: -1,
+                            width: 640,
+                            height: 480,
+                        }}
+                    />
+                    <BasePage/>
+                </header>
+
+            </div>
+        );
+    }else if (emoji === 'palm'){
+        return (
+            <div className="App">
+                <header className="App-header">
+                    <Webcam className = 'webcam'
+                        ref={webcamRef}
+                        style={{
+                            position: "absolute",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            left: 0,
+                            right: 0,
+                            textAlign: "center",
+                            //zIndex: 7,
+                            width: 640,
+                            height: 480,
+                        }}
+                    />
+                    <canvas
+                        ref={canvasRef}
+                        style={{
+                            position: "absolute",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            left: 0,
+                            right: 0,
+                            textAlign: "center",
+                            zIndex: -1,
+                            width: 640,
+                            height: 480,
+                        }}
+                    />
+                    <Test3Header/>
+                </header>
+
+            </div>
+        );
+    }
+    else {
+        return (
+            <div className="App">
+                <header className="App-header">
+                    <Webcam className = 'webcam'
+                        ref={webcamRef}
+                        style={{
+                            position: "absolute",
+                            marginLeft: "auto",
+                            marginRight: "auto",
+                            left: 0,
+                            right: 0,
+                            textAlign: "center",
+                            //zIndex: 7,
                             width: 640,
                             height: 480,
                         }}
