@@ -14,8 +14,6 @@ export const ConditionalRendering = {
 export function SpecificGesturePage(gestureName) {
     const SpecificPage = ConditionalRendering[gestureName];
     return (
-        <>
             <SpecificPage/>
-        </>
     );
 }
