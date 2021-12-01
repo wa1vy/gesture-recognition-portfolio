@@ -1,4 +1,3 @@
-import React from 'react';
 import {Finger, FingerCurl, FingerDirection, GestureDescription} from 'fingerpose';
 // Define Gesture Description
 export const RockGesture = new GestureDescription('rock')
