@@ -41,3 +41,6 @@
   font-size: 150px;
   z-index: 9;
 }
+.webcam{
+  z-index: 7;
+}
