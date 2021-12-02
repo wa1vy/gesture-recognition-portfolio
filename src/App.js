@@ -19,13 +19,13 @@
 // Import gesture to handpose
 
 import React from "react";
-import {Routes, Route, Link} from 'react-router-dom'
+import {Routes, Route} from 'react-router-dom'
 import "./App.css";
-import GestureMode from "./gestureMode";
-import {MyHardSkillsPage} from "./components/MyHardSkillsPage";
-import MyProjectsPage from "./components/MyProjectsPage";
+import GestureMode from "./components/gestureMode/gestureMode";
+import {HardSkillsPage} from "./components/hardSkillsPage";
+import ProjectsPage from "./components/projectsPage";
 import PalmPage from "./components/PalmPage";
-import BasePage from "./components/basePage";
+import BasePage from "./components/gestureMode/basePage/basePage";
 import HomePage from "./components/homePage";
 
 function App() {
@@ -36,8 +36,8 @@ function App() {
                 <Route path = '/' element={<HomePage/>} />
                 <Route path = '/base-page' element={<BasePage/>} />
                 <Route path = '/gesture-mode' element={<GestureMode/>} />
-                <Route path = '/hard-skills' element={<MyHardSkillsPage/>} />
-                <Route path = '/projects' element={<MyProjectsPage/>} />
+                <Route path = '/hard-skills' element={<HardSkillsPage/>} />
+                <Route path = '/projects' element={<ProjectsPage/>} />
                 <Route path = '/palm-page' element={<PalmPage/>} />
             </Routes>
         </div>

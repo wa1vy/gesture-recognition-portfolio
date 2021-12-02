@@ -1,7 +1,16 @@
 .App {
   text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
-
+h1{
+  margin: 0;
+  padding-top: 50px;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -12,55 +21,18 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+video{
+  display: block;
+  visibility: hidden;
+  width: 1px;
+  height: 1px;
+  z-index: -1;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.testDiv{
-  font-size: 150px;
-  z-index: 9;
-}
-.webcam{
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  text-align: center;
-  width: 640px;
-  height: 480px;
-  z-index: 7;
-}
-
-.canvas{
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  text-align: center;
-  width: 640px;
-  height: 480px;
-  z-index: -1;
 }
