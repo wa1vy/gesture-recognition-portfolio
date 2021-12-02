@@ -6,6 +6,8 @@ export const PalmGesture = new GestureDescription('palm')
 PalmGesture.addCurl(Finger.Thumb, FingerCurl.NoCurl, 1.0)
 PalmGesture.addDirection(Finger.Thumb, FingerDirection.HorizontalLeft, 0.25);
 PalmGesture.addDirection(Finger.Thumb, FingerDirection.HorizontalRight, 0.25);
+PalmGesture.addDirection(Finger.Thumb, FingerDirection.DiagonalUpRight, 0.1);
+PalmGesture.addDirection(Finger.Thumb, FingerDirection.DiagonalUpLeft, 0.1);
 
 // Index
 PalmGesture.addCurl(Finger.Index, FingerCurl.NoCurl, 1.0)
