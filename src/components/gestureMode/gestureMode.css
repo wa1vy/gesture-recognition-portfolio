@@ -1,0 +1,29 @@
+.gestureMode{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 7;
+    background: darkblue;
+}
+
+
+.canvas{
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    width: 640px;
+    height: 480px;
+    z-index: -1;
+}
+
+.top{
+    z-index: 100;
+    background: #111;
+}
+
+img{
+    color: white;
+}
