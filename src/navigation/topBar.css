@@ -1,0 +1,16 @@
+.instructionsContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+img{
+    padding: 20px;
+    width: 70px;
+}
+.gestureNames{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding-left: 50px;
+    padding-right: 50px;
+}
