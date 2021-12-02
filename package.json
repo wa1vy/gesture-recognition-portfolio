@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mui/material": "latest",
+    "@emotion/styled": "latest",
+    "@emotion/react": "latest",
     "@tensorflow-models/handpose": "^0.0.7",
     "@tensorflow/tfjs": "^3.11.0",
     "@testing-library/jest-dom": "^5.11.4",
@@ -39,5 +42,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/wa1vy/gesture-recognition-portfolio.git",
+  "author": "flibbertz <yasha.vysotskiy@gmail.com>",
+  "license": "MIT"
 }
